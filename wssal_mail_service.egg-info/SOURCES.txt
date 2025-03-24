@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+wssal_mail_service.egg-info/PKG-INFO
+wssal_mail_service.egg-info/SOURCES.txt
+wssal_mail_service.egg-info/dependency_links.txt
+wssal_mail_service.egg-info/entry_points.txt
+wssal_mail_service.egg-info/requires.txt
+wssal_mail_service.egg-info/top_level.txt
