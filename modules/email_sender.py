@@ -8,13 +8,15 @@ import time
 import getpass
 import logging
 import smtplib
+import imaplib
+import email
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 from colorama import Fore
 
 from modules.config import (
-    SMTP_SERVER, SMTP_PORT, LOG_FILE, 
+    SMTP_SERVER, SMTP_PORT, IMAP_SERVER, IMAP_PORT, LOG_FILE, 
     BRAND_EMAIL_SUBJECT, BRAND_EMAIL_TEMPLATE,
     INFLUENCER_EMAIL_SUBJECT, INFLUENCER_EMAIL_TEMPLATE,
     DEFAULT_EMAIL, DEFAULT_PASSWORD
@@ -35,6 +37,8 @@ class EmailSender:
         self.password = DEFAULT_PASSWORD
         self.smtp_server = SMTP_SERVER
         self.smtp_port = SMTP_PORT
+        self.imap_server = IMAP_SERVER
+        self.imap_port = IMAP_PORT
         self.log_data = []
         self.data_handler = DataHandler()
         self.ui = UI()
@@ -75,15 +79,22 @@ class EmailSender:
                 sys.exit(1)
     
     def verify_credentials(self):
-        """Verify SMTP credentials"""
+        """Verify email credentials using both SMTP and IMAP"""
         try:
+            # Verify SMTP credentials
             server = smtplib.SMTP(self.smtp_server, self.smtp_port)
             server.ehlo()
             server.starttls()
             server.login(self.email, self.password)
             server.quit()
+            
+            # Verify IMAP credentials
+            imap = imaplib.IMAP4_SSL(self.imap_server, self.imap_port)
+            imap.login(self.email, self.password)
+            imap.logout()
+            
         except Exception as e:
-            raise Exception(f"Invalid credentials or SMTP configuration: {str(e)}")
+            raise Exception(f"Invalid credentials or email server configuration: {str(e)}")
     
     def send_email_to_brands(self):
         """Send emails to brands"""

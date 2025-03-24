@@ -58,6 +58,8 @@ class UI:
         print(f"{Fore.WHITE}  Create a .env file with the following variables:")
         print(f"{Fore.CYAN}  SMTP_SERVER{Fore.WHITE}=smtp.gmail.com")
         print(f"{Fore.CYAN}  SMTP_PORT{Fore.WHITE}=587")
+        print(f"{Fore.CYAN}  IMAP_SERVER{Fore.WHITE}=imap.gmail.com")
+        print(f"{Fore.CYAN}  IMAP_PORT{Fore.WHITE}=993")
         print(f"{Fore.CYAN}  EMAIL_ADDRESS{Fore.WHITE}=your-email@example.com")
         print(f"{Fore.CYAN}  EMAIL_PASSWORD{Fore.WHITE}=your-password")
         print(f"{Fore.CYAN}  BRANDS_EXCEL_PATH{Fore.WHITE}=./data/Brand Sheet.xlsx")

@@ -38,9 +38,11 @@ Workerssal Mail Service is a command-line application that automates email marke
 
 Create a `.env` file in the root directory with the following variables:
 
-# SMTP Configuration
+# Email Configuration
 SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
+IMAP_SERVER=imap.gmail.com
+IMAP_PORT=993
 EMAIL_ADDRESS=your-email@example.com
 EMAIL_PASSWORD=your-password
 

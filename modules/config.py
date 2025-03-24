@@ -13,9 +13,11 @@ APP_NAME = "wssal-mail-service"
 VERSION = "1.0.0"
 LOG_FILE = "email_log.xlsx"
 
-# SMTP Configuration
+# Email Configuration
 SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
+IMAP_SERVER = os.getenv("IMAP_SERVER", "imap.gmail.com")
+IMAP_PORT = int(os.getenv("IMAP_PORT", 993))
 DEFAULT_EMAIL = os.getenv("EMAIL_ADDRESS", "")
 DEFAULT_PASSWORD = os.getenv("EMAIL_PASSWORD", "")
 
