@@ -97,7 +97,7 @@ class EmailSender:
             raise Exception(f"Invalid credentials or email server configuration: {str(e)}")
     
     def send_email_to_brands(self):
-        """Send emails to brands"""
+        """Send emails to brands with modern HTML templates"""
         if not self.email or not self.password:
             print(f"{Fore.RED}Please activate the service first with 'wssal-mail-service activate'")
             return
@@ -117,15 +117,19 @@ class EmailSender:
                     self.log_result(company, email, "FAILED", "Missing email address")
                     continue
                 
-                # Create email content
+                # Create email content using HTML template
                 subject = BRAND_EMAIL_SUBJECT
-                body = BRAND_EMAIL_TEMPLATE.format(company=company)
                 
-                # Add signature
+                # Use plain text for fallback
+                plain_body = BRAND_EMAIL_TEMPLATE.format(company=company)
+                
+                # Use HTML template from templates module
+                from modules.templates import get_brand_email_template, get_email_signature
+                html_body = get_brand_email_template(company)
                 signature = get_email_signature()
                 
                 # Send the email
-                result = self.send_email(email, subject, body, signature)
+                result = self.send_email(email, subject, plain_body, html_body, signature)
                 self.log_result(company, email, "SUCCESS" if result else "FAILED", 
                                "" if result else "Failed to send email")
                 
@@ -197,17 +201,24 @@ class EmailSender:
         print(f"\n{Fore.GREEN}Email campaign completed! Log saved to {LOG_FILE}")
     
     def send_email(self, recipient, subject, body, signature):
-        """Send an email to a recipient"""
+        """Send an email to a recipient with modern styling"""
         try:
             msg = MIMEMultipart('alternative')
             msg['From'] = self.email
             msg['To'] = recipient
             msg['Subject'] = subject
             
-            # Create HTML version with signature
+            # Create HTML version with modern styling that matches signature
             html_content = f"""
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                <div style="white-space: pre-line;">{body}</div>
+            <div style="width: 100%; max-width: 650px; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0 auto;">
+                <!-- Email Body Section -->
+                <div style="padding: 28px; background: linear-gradient(to right, #ffffff, #f7f9fc); border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); margin-bottom: 20px;">
+                    <div style="color: #2c3444; font-size: 16px; line-height: 1.6; white-space: pre-line;">
+                        {body}
+                    </div>
+                </div>
+                
+                <!-- Signature Section (already has its own container) -->
                 {signature}
             </div>
             """

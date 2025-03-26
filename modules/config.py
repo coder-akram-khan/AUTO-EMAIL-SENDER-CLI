@@ -29,7 +29,7 @@ INFLUENCERS_EXCEL_PATH = os.getenv("INFLUENCERS_EXCEL_PATH", "./data/Influencers
 BRAND_EMAIL_SUBJECT = "🚀 Get Influencers to Promote Your Brand – Hassle-Free!"
 BRAND_EMAIL_TEMPLATE = """Hey {company} team,
 
-Looking to get your products/services in front of the right audience? At Workersal, we connect brands with top influencers who can drive real engagement and sales for you.
+Looking to get your products/services in front of the right audience? At Workerssal, we connect brands with top influencers who can drive real engagement and sales for you.
 
 ✅ Handpicked influencers in your niche
 ✅ Authentic promotions that build trust
@@ -38,16 +38,16 @@ Looking to get your products/services in front of the right audience? At Workers
 Let's discuss how we can bring you the perfect influencers for your brand. When's a good time to chat?
 
 Best Regards,
-Team Workersal
+Team Workerssal
 official@workerssal.com
 """
 
-INFLUENCER_EMAIL_SUBJECT = "🎯 Brands Want to Pay You – Let Workersal Handle It!"
+INFLUENCER_EMAIL_SUBJECT = "🎯 Brands Want to Pay You – Let Workerssal Handle It!"
 INFLUENCER_EMAIL_TEMPLATE = """Hey {username},
 
 We're helping influencers like you land paid brand deals—without the stress of outreach or negotiations.
 
-At Workersal, we connect you with top brands that fit your niche, so you can focus on content while we bring the sponsorships to you.
+At Workerssal, we connect you with top brands that fit your niche, so you can focus on content while we bring the sponsorships to you.
 
 Interested? Let's get you paid!!
 

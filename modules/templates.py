@@ -4,7 +4,7 @@ Templates module for Workerssal Mail Service
 
 def get_email_signature():
     """Return the HTML email signature"""
-    return """<div style="width: 100%; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0 auto; padding: 24px; background: linear-gradient(to right, #ffffff, #f7f9fc); border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+    return """<div style="width: 100%; max-width: 650px; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0 auto; padding: 24px; background: linear-gradient(to right, #ffffff, #f7f9fc); border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
   <table style="width: 100%; border-collapse: collapse;">
     <tr>
       <td style="text-align: center; padding-bottom: 18px;">
@@ -61,4 +61,47 @@ def get_email_signature():
       </td>
     </tr>
   </table>
-</div>""" 
+</div>"""
+
+def get_brand_email_template(company):
+    """Return HTML formatted brand email template"""
+    return f"""
+    <div style="color: #2c3444; font-size: 16px; line-height: 1.6;">
+        <p style="font-size: 18px; font-weight: 600; color: #4a6cf7; margin-bottom: 16px;">Hey {company} team,</p>
+        
+        <p>Looking to get your products/services in front of the right audience? At <span style="color: #4a6cf7; font-weight: 500;">Workersal</span>, we connect brands with top influencers who can drive real engagement and sales for you.</p>
+        
+        <div style="margin: 20px 0; padding: 15px; background-color: rgba(74, 108, 247, 0.05); border-left: 4px solid #4a6cf7; border-radius: 4px;">
+            <p style="margin: 8px 0; display: flex; align-items: center;">
+                <span style="color: #4a6cf7; margin-right: 10px; font-size: 18px;">✅</span> 
+                <span>Handpicked influencers in your niche</span>
+            </p>
+            <p style="margin: 8px 0; display: flex; align-items: center;">
+                <span style="color: #4a6cf7; margin-right: 10px; font-size: 18px;">✅</span> 
+                <span>Authentic promotions that build trust</span>
+            </p>
+            <p style="margin: 8px 0; display: flex; align-items: center;">
+                <span style="color: #4a6cf7; margin-right: 10px; font-size: 18px;">✅</span> 
+                <span>End-to-end campaign management – zero hassle for you</span>
+            </p>
+        </div>
+        
+        <p>Let's discuss how we can bring you the perfect influencers for your brand. When's a good time to chat?</p>
+    </div>
+    """
+
+def get_influencer_email_template(username):
+    """Return HTML formatted influencer email template"""
+    return f"""
+    <div style="color: #2c3444; font-size: 16px; line-height: 1.6;">
+        <p style="font-size: 18px; font-weight: 600; color: #4a6cf7; margin-bottom: 16px;">Hey {username},</p>
+        
+        <p>We're helping influencers like you land paid brand deals—without the stress of outreach or negotiations.</p>
+        
+        <div style="margin: 20px 0; padding: 15px; background-color: rgba(74, 108, 247, 0.05); border-left: 4px solid #4a6cf7; border-radius: 4px;">
+            <p>At <span style="color: #4a6cf7; font-weight: 500;">Workersal</span>, we connect you with top brands that fit your niche, so you can focus on content while we bring the sponsorships to you.</p>
+        </div>
+        
+        <p style="font-weight: 500;">Interested? Let's get you paid!! 💰</p>
+    </div>
+    """ 
