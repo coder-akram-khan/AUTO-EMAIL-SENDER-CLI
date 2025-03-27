@@ -23,7 +23,7 @@ from modules.config import (
 )
 from modules.data_handler import DataHandler
 from modules.ui import UI
-from modules.templates import get_email_signature
+from modules.templates import get_email_signature, get_brand_email_template, get_influencer_email_template
 
 logger = logging.getLogger(__name__)
 
@@ -109,6 +109,7 @@ class EmailSender:
         
         for i, brand in enumerate(brands):
             try:
+                # Extract fields from the Excel sheet
                 company = brand.get("COMPANY", "")
                 poc_name = brand.get("POC NAME", "")
                 email = brand.get("Gmail", "")
@@ -120,16 +121,11 @@ class EmailSender:
                 # Create email content using HTML template
                 subject = BRAND_EMAIL_SUBJECT
                 
-                # Use plain text for fallback
-                plain_body = BRAND_EMAIL_TEMPLATE.format(company=company)
-                
-                # Use HTML template from templates module
-                from modules.templates import get_brand_email_template, get_email_signature
+                # Get HTML content from templates
                 html_body = get_brand_email_template(company)
-                signature = get_email_signature()
                 
-                # Send the email
-                result = self.send_email(email, subject, plain_body, html_body, signature)
+                # Send the email with HTML template
+                result = self.send_email(email, subject, html_body)
                 self.log_result(company, email, "SUCCESS" if result else "FAILED", 
                                "" if result else "Failed to send email")
                 
@@ -173,13 +169,12 @@ class EmailSender:
                 
                 # Create email content
                 subject = INFLUENCER_EMAIL_SUBJECT
-                body = INFLUENCER_EMAIL_TEMPLATE.format(username=username)
                 
-                # Add signature
-                signature = get_email_signature()
+                # Get HTML content from templates
+                html_body = get_influencer_email_template(username)
                 
-                # Send the email
-                result = self.send_email(email, subject, body, signature)
+                # Send the email with HTML template
+                result = self.send_email(email, subject, html_body)
                 self.log_result(username, email, "SUCCESS" if result else "FAILED", 
                                "" if result else "Failed to send email")
                 
@@ -200,7 +195,7 @@ class EmailSender:
         self.data_handler.save_log(self.log_data, LOG_FILE)
         print(f"\n{Fore.GREEN}Email campaign completed! Log saved to {LOG_FILE}")
     
-    def send_email(self, recipient, subject, body, signature):
+    def send_email(self, recipient, subject, html_body):
         """Send an email to a recipient with modern styling"""
         try:
             msg = MIMEMultipart('alternative')
@@ -208,14 +203,18 @@ class EmailSender:
             msg['To'] = recipient
             msg['Subject'] = subject
             
+            # Extract plain text from HTML for fallback
+            plain_body = subject + "\n\nPlease view this email in an HTML-compatible email client."
+            
+            # Get signature
+            signature = get_email_signature()
+            
             # Create HTML version with modern styling that matches signature
             html_content = f"""
             <div style="width: 100%; max-width: 650px; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0 auto;">
                 <!-- Email Body Section -->
                 <div style="padding: 28px; background: linear-gradient(to right, #ffffff, #f7f9fc); border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); margin-bottom: 20px;">
-                    <div style="color: #2c3444; font-size: 16px; line-height: 1.6; white-space: pre-line;">
-                        {body}
-                    </div>
+                    {html_body}
                 </div>
                 
                 <!-- Signature Section (already has its own container) -->
@@ -224,7 +223,7 @@ class EmailSender:
             """
             
             # Attach parts
-            text_part = MIMEText(body, 'plain')
+            text_part = MIMEText(plain_body, 'plain')
             html_part = MIMEText(html_content, 'html')
             
             msg.attach(text_part)
@@ -243,12 +242,13 @@ class EmailSender:
             logger.error(f"Failed to send email to {recipient}: {str(e)}")
             return False
     
-    def log_result(self, recipient_name, email, status, message=""):
-        """Log the result of sending an email"""
+    def log_result(self, name, email, status, note=""):
+        """Log the result of an email send operation"""
         self.log_data.append({
-            "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "Recipient": recipient_name,
+            "Date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "Name": name,
             "Email": email,
             "Status": status,
-            "Message": message
+            "Note": note
         }) 
+        
