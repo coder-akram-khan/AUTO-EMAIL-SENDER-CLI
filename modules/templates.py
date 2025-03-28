@@ -85,25 +85,34 @@ def get_brand_email_template(company):
         
         <!-- Feature list with enhanced styling -->
         <div style="margin: 25px 0; background: linear-gradient(to right, #ffffff, #f7f9fc); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 5px;">
+            <!-- Feature item 1 -->
             <div style="padding: 18px; border-bottom: 1px solid rgba(74, 108, 247, 0.15);">
-                <p style="margin: 8px 0; display: flex; align-items: center;">
-                    <span style="background-color: #4a6cf7; color: white; margin-right: 15px; font-size: 14px; height: 24px; width: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">✓</span> 
-                    <span style="font-weight: 500;">Handpicked influencers in your niche</span>
-                </p>
+                <div style="display: flex; align-items: center;">
+                    <div style="min-width: 24px; width: 24px; height: 24px; background-color: #4a6cf7; color: white; margin-right: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 14px; line-height: 1;">✓</span>
+                    </div> 
+                    <div style="font-weight: 500;">Handpicked influencers in your niche</div>
+                </div>
             </div>
             
+            <!-- Feature item 2 -->
             <div style="padding: 18px; border-bottom: 1px solid rgba(74, 108, 247, 0.15);">
-                <p style="margin: 8px 0; display: flex; align-items: center;">
-                    <span style="background-color: #4a6cf7; color: white; margin-right: 15px; font-size: 14px; height: 24px; width: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">✓</span> 
-                    <span style="font-weight: 500;">Authentic promotions that build trust</span>
-                </p>
+                <div style="display: flex; align-items: center;">
+                    <div style="min-width: 24px; width: 24px; height: 24px; background-color: #4a6cf7; color: white; margin-right: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 14px; line-height: 1;">✓</span>
+                    </div> 
+                    <div style="font-weight: 500;">Authentic promotions that build trust</div>
+                </div>
             </div>
             
+            <!-- Feature item 3 -->
             <div style="padding: 18px;">
-                <p style="margin: 8px 0; display: flex; align-items: center;">
-                    <span style="background-color: #4a6cf7; color: white; margin-right: 15px; font-size: 14px; height: 24px; width: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">✓</span> 
-                    <span style="font-weight: 500;">End-to-end campaign management – zero hassle for you</span>
-                </p>
+                <div style="display: flex; align-items: center;">
+                    <div style="min-width: 24px; width: 24px; height: 24px; background-color: #4a6cf7; color: white; margin-right: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 14px; line-height: 1;">✓</span>
+                    </div> 
+                    <div style="font-weight: 500;">End-to-end campaign management – zero hassle for you</div>
+                </div>
             </div>
         </div>
         

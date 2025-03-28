@@ -209,11 +209,11 @@ class EmailSender:
             # Get signature
             signature = get_email_signature()
             
-            # Create HTML version with modern styling that matches signature
+            # Create HTML version with modern styling that matches signature exactly
             html_content = f"""
             <div style="width: 100%; max-width: 650px; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0 auto;">
                 <!-- Email Body Section -->
-                <div style="padding: 28px; background: linear-gradient(to right, #ffffff, #f7f9fc); border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); margin-bottom: 20px;">
+                <div style="width: 100%; padding: 24px; background: linear-gradient(to right, #ffffff, #f7f9fc); border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); margin-bottom: 20px;">
                     {html_body}
                 </div>
                 
