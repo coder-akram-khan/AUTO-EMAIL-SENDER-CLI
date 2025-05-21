@@ -134,3 +134,16 @@ wssal-mail-service --manual
 ```
 wssal-mail-service version
 ```
+
+## 📬 Support & Contact
+
+- **Email**: [akram.codes.it@gmail.com](mailto:akram.codes.it@gmail.com)
+- **WhatsApp**: [+91 86175 29117](https://wa.me/918617529117)
+
+## 📄 License
+
+MIT © [AK])
+
+---
+<p align="center">Made ❤️ by Akram Khan</p>
+
