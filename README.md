@@ -1,149 +1,266 @@
-# Workerssal Mail Service
+<div align="center">
 
-Automated Email Marketing Tool for Brands & Influencers
+# 📬 AUTO EMAIL SENDER CLI
 
-## Overview
+**A powerful, terminal-based Python tool for sending automated emails — fast, flexible, and fully scriptable.**
 
-Workerssal Mail Service is a command-line application that automates email marketing campaigns for brands and influencers. It reads data from Excel sheets and sends personalized emails to recipients.
+[![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![SMTP](https://img.shields.io/badge/Protocol-SMTP%20%2F%20SSL-00C853?style=for-the-badge&logo=gmail&logoColor=white)](https://docs.python.org/3/library/smtplib.html)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)]()
+[![CLI](https://img.shields.io/badge/Interface-CLI-black?style=for-the-badge&logo=gnometerminal&logoColor=white)]()
 
-## Features
+<br/>
 
-- Send personalized emails to brands and influencers
-- Track email campaign progress with a visual progress bar
-- Log all email activities to an Excel file
-- Cross-platform support (Windows, macOS, Linux)
-- Secure credential management
+> _Stop clicking. Start scripting. Automate your emails straight from the terminal._
 
-## Installation
+<br/>
 
-### Prerequisites
+</div>
 
-- Python 3.7 or higher
-- pip (Python package installer)
+---
 
-### Install from source
+## 🚀 Overview
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/workerssal/wssal-mail-service.git
-   cd wssal-mail-service
-   ```
+**AUTO EMAIL SENDER CLI** is a lightweight yet capable command-line tool that lets you send emails programmatically using Python's `smtplib` and `email` libraries. Whether you're sending notifications, bulk messages, or automated alerts — this tool puts the power directly in your terminal.
 
-2. Install the package:
-   ```
-   pip install -e .
-   ```
+No GUI. No bloat. Pure automation.
 
-## Configuration
+---
 
-Create a `.env` file in the root directory with the following variables:
+## ✨ Features
 
-# Email Configuration
-SMTP_SERVER=smtp.gmail.com
-SMTP_PORT=587
-IMAP_SERVER=imap.gmail.com
-IMAP_PORT=993
-EMAIL_ADDRESS=your-email@example.com
-EMAIL_PASSWORD=your-password
+| Feature | Description |
+|---|---|
+| 📤 **Send Emails via CLI** | Trigger email sends directly from your terminal with a single command |
+| 🔐 **SSL/TLS Encryption** | Secure SMTP connection using SSL to keep your credentials and content safe |
+| 📎 **Attachment Support** | Attach files to your emails effortlessly |
+| 🧾 **HTML & Plain Text** | Send beautifully formatted HTML emails or simple plain-text messages |
+| 👥 **Multiple Recipients** | Send to one or many recipients in a single run |
+| ⚙️ **Configurable** | Easy-to-edit configuration — no hardcoded secrets |
+| 🐍 **Pure Python** | Zero third-party dependencies — uses only Python standard library |
 
-# File Paths
-BRANDS_EXCEL_PATH=./data/Brand Sheet.xlsx
-INFLUENCERS_EXCEL_PATH=./data/Influencers Sheet.xlsx
+---
 
-## Usage
-
-### Activate the service
-
-Before sending emails, you need to activate the service with your credentials:
-
-## Data Format
-
-### Brand Sheet Format
-
-The brand Excel sheet should have the following columns:
-- COMPANY: Company name
-- POC NAME: Point of contact name
-- Gmail: Email address
-
-Example:
-```
-COMPANY,POC NAME,Gmail
-HERSAY,Avishkar Sonawane,example@gmail.com
-Svarasya,Deepti Sehgal,contact@example.com
-```
-
-### Influencer Sheet Format
-
-The influencer Excel sheet should have the following columns:
-- USERNAME: Influencer's username
-- LINK: Link to influencer's profile
-- EMAIL: Email address
-
-Example:
-```
-USERNAME,LINK,EMAIL
-anshi_lifestyle316,https://www.instagram.com/anshi_lifestyle316,example@gmail.com
-mridul tripathi,https://www.instagram.com/mridultripathi_,example@gmail.com
-```
-
-## Logs
-
-All email activities are logged to an Excel file named `email_log.xlsx` in the root directory. The log includes:
-- Timestamp
-- Recipient name
-- Email address
-- Status (SUCCESS/FAILED)
-- Error message (if any)
-
-## License
-
-Copyright (c) 2024 - Workerssal. All rights reserved.
-
-### Send emails to brands
-
-To start sending emails to all brands in your Excel sheet:
+## 📁 Project Structure
 
 ```
-wssal-mail-service start --brands
+AUTO-EMAIL-SENDER-CLI/
+│
+├── auto_email_sender.py     # Main script — entry point for the CLI tool
+├── config.py                # Configuration: SMTP settings, credentials
+├── requirements.txt         # Dependencies (if any)
+├── README.md                # Project documentation
+└── .env.example             # Example environment variable template
 ```
 
-### Send emails to influencers
+---
 
-To start sending emails to all influencers in your Excel sheet:
+## ⚙️ Prerequisites
 
-```
-wssal-mail-service start --influencers
-```
+- Python **3.8** or higher
+- A Gmail (or any SMTP-compatible) account
+- Gmail App Password *(required if using Gmail with 2FA — see setup below)*
 
-### Display the user manual
+---
 
-There are two ways to display the user manual:
+## 🔧 Installation
 
-```
-wssal-mail-service manual
-```
+**1. Clone the repository**
 
-or
-
-```
-wssal-mail-service --manual
+```bash
+git clone https://github.com/coder-akram-khan/AUTO-EMAIL-SENDER-CLI.git
+cd AUTO-EMAIL-SENDER-CLI
 ```
 
-### Display version information
+**2. (Optional) Create and activate a virtual environment**
+
+```bash
+python -m venv venv
+source venv/bin/activate        # On Windows: venv\Scripts\activate
+```
+
+**3. Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🔑 Gmail App Password Setup
+
+> Gmail blocks direct password login for scripts. You'll need to generate an **App Password**.
+
+1. Go to your [Google Account Security Settings](https://myaccount.google.com/security)
+2. Enable **2-Step Verification** (if not already enabled)
+3. Navigate to **App Passwords** → Select *Mail* → Select *Device*
+4. Copy the generated 16-character password
+5. Use that password in your configuration (not your regular Gmail password)
+
+---
+
+## 🛠️ Configuration
+
+Edit the configuration section in `auto_email_sender.py` (or `config.py`) with your credentials:
+
+```python
+SENDER_EMAIL    = "your_email@gmail.com"
+SENDER_PASSWORD = "your_app_password_here"   # NOT your Gmail login password
+SMTP_SERVER     = "smtp.gmail.com"
+SMTP_PORT       = 465                         # SSL port
+```
+
+> 🔒 **Security Tip:** Never commit credentials to version control. Use environment variables or a `.env` file.
+
+Using a `.env` file:
+
+```bash
+# .env
+SENDER_EMAIL=your_email@gmail.com
+SENDER_PASSWORD=your_app_password
+```
+
+---
+
+## ▶️ Usage
+
+### Basic Usage
+
+```bash
+python auto_email_sender.py
+```
+
+### Send to a Specific Recipient
+
+```bash
+python auto_email_sender.py --to recipient@example.com --subject "Hello!" --body "This is an automated message."
+```
+
+### Send with an Attachment
+
+```bash
+python auto_email_sender.py --to recipient@example.com --subject "Report" --body "See attached." --attach report.pdf
+```
+
+### Send HTML Email
+
+```bash
+python auto_email_sender.py --to recipient@example.com --subject "Newsletter" --html email_template.html
+```
+
+> ⚠️ _Flag names may vary — refer to `python auto_email_sender.py --help` for exact CLI options._
+
+---
+
+## 📤 How It Works
 
 ```
-wssal-mail-service version
+┌─────────────────────────────────────────────────┐
+│                   Your Terminal                 │
+│   python auto_email_sender.py [options]         │
+└────────────────────┬────────────────────────────┘
+                     │
+                     ▼
+        ┌────────────────────────┐
+        │  Load Config / Args    │
+        │  (sender, recipient,   │
+        │   subject, body, etc.) │
+        └────────────┬───────────┘
+                     │
+                     ▼
+        ┌────────────────────────┐
+        │  Build Email Message   │
+        │  (MIMEMultipart +      │
+        │   HTML/Plain + Files)  │
+        └────────────┬───────────┘
+                     │
+                     ▼
+        ┌────────────────────────┐
+        │  SMTP SSL Connection   │
+        │  smtp.gmail.com:465    │
+        └────────────┬───────────┘
+                     │
+                     ▼
+        ┌────────────────────────┐
+        │   Email Sent! ✅       │
+        └────────────────────────┘
 ```
 
-## 📬 Support & Contact
+---
 
-- **Email**: [akram.codes.it@gmail.com](mailto:akram.codes.it@gmail.com)
-- **WhatsApp**: [+91 86175 29117](https://wa.me/918617529117)
+## 🧪 Example Output
+
+```
+$ python auto_email_sender.py
+
+╔══════════════════════════════════════╗
+║       AUTO EMAIL SENDER CLI          ║
+╚══════════════════════════════════════╝
+
+[*] Connecting to smtp.gmail.com:465 ...
+[✓] Connection established.
+[*] Authenticating sender: akram@gmail.com
+[✓] Authentication successful.
+[*] Sending email to: recipient@example.com
+[✓] Email sent successfully!
+
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+1. **Fork** the repository
+2. Create a feature branch: `git checkout -b feature/awesome-feature`
+3. Commit your changes: `git commit -m "Add awesome feature"`
+4. Push to the branch: `git push origin feature/awesome-feature`
+5. Open a **Pull Request**
+
+Please ensure your code follows PEP 8 style guidelines and includes relevant comments.
+
+---
+
+## 🛡️ Security Notice
+
+- **Never** hardcode credentials directly into the script
+- Add `.env` and `config.py` (if containing secrets) to your `.gitignore`
+- Use App Passwords instead of your primary account password
+- Consider rotating credentials periodically
+
+---
+
+## 📌 Roadmap
+
+- [x] Send plain-text emails via CLI
+- [x] SSL/TLS encrypted SMTP connection
+- [x] File attachment support
+- [x] HTML email support
+- [ ] Bulk email sending from CSV
+- [ ] Email scheduling (cron-compatible)
+- [ ] Support for other SMTP providers (Outlook, Yahoo, SendGrid)
+- [ ] Rich TUI interface with `rich` or `textual`
+
+---
 
 ## 📄 License
 
-MIT © [AK])
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
-<p align="center">Made ❤️ by Akram Khan</p>
 
+## 👨‍💻 Author
+
+**Akram Khan**
+
+[![GitHub](https://img.shields.io/badge/GitHub-coder--akram--khan-181717?style=flat-square&logo=github)](https://github.com/coder-akram-khan)
+
+---
+
+<div align="center">
+
+_If you found this useful, please ⭐ star the repo — it means a lot!_
+
+</div>
